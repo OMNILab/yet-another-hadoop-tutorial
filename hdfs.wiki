@@ -1,0 +1,79 @@
+= 基本命令 =
+
+操作Hadoop分布式文件系统HDFS的基本命令是<code>hdfs</code>，命令行参数如下：
+
+<pre>$ hdfs      
+Usage: hdfs [--config confdir] COMMAND
+       where COMMAND is one of:
+  dfs                  run a filesystem command on the file systems supported in Hadoop.
+  namenode -format     format the DFS filesystem
+  secondarynamenode    run the DFS secondary namenode
+  namenode             run the DFS namenode
+  journalnode          run the DFS journalnode
+  zkfc                 run the ZK Failover Controller daemon
+  datanode             run a DFS datanode
+  dfsadmin             run a DFS admin client
+  haadmin              run a DFS HA admin client
+  fsck                 run a DFS filesystem checking utility
+  balancer             run a cluster balancing utility
+  jmxget               get JMX exported values from NameNode or DataNode.
+  oiv                  apply the offline fsimage viewer to an fsimage
+  oev                  apply the offline edits viewer to an edits file
+  fetchdt              fetch a delegation token from the NameNode
+  getconf              get config values from configuration
+  groups               get the groups which users belong to
+                                                Use -help to see options</pre>
+hdfs命令的子功能很多，如<code>dfs</code>处理一般文件系统命令，<code>fsck</code>检查文件系统完整性，<code>dfsadmin</code>用于文件系统管理。
+
+本教程着重向用户介绍HDFS的一般用法，以<code>dfs</code>子命令为主要内容。 HDFS的管理在其他文档介绍。
+
+<pre>$ hdfs dfs   
+Usage: hadoop fs [generic options]
+        [-cat [-ignoreCrc] &lt;src&gt; ...]
+        [-chgrp [-R] GROUP PATH...]
+        [-chmod [-R] &lt;MODE[,MODE]... | OCTALMODE&gt; PATH...]
+        [-chown [-R] [OWNER][:[GROUP]] PATH...]
+        [-copyFromLocal &lt;localsrc&gt; ... &lt;dst&gt;]
+        [-copyToLocal [-ignoreCrc] [-crc] &lt;src&gt; ... &lt;localdst&gt;]
+        [-count [-q] &lt;path&gt; ...]
+        [-cp &lt;src&gt; ... &lt;dst&gt;]
+        [-df [-h] [&lt;path&gt; ...]]
+        [-du [-s] [-h] &lt;path&gt; ...]
+        [-expunge]
+        [-get [-ignoreCrc] [-crc] &lt;src&gt; ... &lt;localdst&gt;]
+        [-getmerge [-nl] &lt;src&gt; &lt;localdst&gt;]
+        [-help [cmd ...]]
+        [-ls [-d] [-h] [-R] [&lt;path&gt; ...]]
+        [-mkdir [-p] &lt;path&gt; ...]
+        [-moveFromLocal &lt;localsrc&gt; ... &lt;dst&gt;]
+        [-moveToLocal &lt;src&gt; &lt;localdst&gt;]
+        [-mv &lt;src&gt; ... &lt;dst&gt;]
+        [-put &lt;localsrc&gt; ... &lt;dst&gt;]
+        [-rm [-f] [-r|-R] [-skipTrash] &lt;src&gt; ...]
+        [-rmdir [--ignore-fail-on-non-empty] &lt;dir&gt; ...]
+        [-setrep [-R] [-w] &lt;rep&gt; &lt;path/file&gt; ...]
+        [-stat [format] &lt;path&gt; ...]
+        [-tail [-f] &lt;file&gt;]
+        [-test -[ezd] &lt;path&gt;]
+        [-text [-ignoreCrc] &lt;src&gt; ...]
+        [-touchz &lt;path&gt; ...]
+        [-usage [cmd ...]]
+
+Generic options supported are
+-conf &lt;configuration file&gt;     specify an application configuration file
+-D &lt;property=value&gt;            use value for given property
+-fs &lt;local|namenode:port&gt;      specify a namenode
+-jt &lt;local|jobtracker:port&gt;    specify a job tracker
+-files &lt;comma separated list of files&gt;    specify comma separated files to be copied to the map reduce cluster
+-libjars &lt;comma separated list of jars&gt;    specify comma separated jar files to include in the classpath.
+-archives &lt;comma separated list of archives&gt;    specify comma separated archives to be unarchived on the compute machines.
+
+The general command line syntax is
+bin/hadoop command [genericOptions] [commandOptions]</pre>
+= 管理员命令 =
+
+= 使用alias简化命令 =
+
+= 参考资料 =
+
+* “Hadoop MapReduce Tutorial v1.2.1” http://hadoop.apache.org/docs/r1.2.1/mapred_tutorial.html

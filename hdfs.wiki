@@ -70,6 +70,43 @@ Generic options supported are
 
 The general command line syntax is
 bin/hadoop command [genericOptions] [commandOptions]</pre>
+== 复制和移动文件 ==
+
+=== 从本地向HDFS复制文件<code>copyFromLocal</code> ===
+
+格式如下：
+
+<pre>$ hdfs dfs -copyFromLocal &lt;localsrc&gt; ... &lt;dst&gt;</pre>
+复制单个文件：
+
+<pre>$ hdfs dfs -copyFromLocal hello.txt /user/jianwen/
+$ hdfs dfs -ls /user/jianwen/
+Found 1 items
+-rw-r--r--   3 jianwen hadoop         15 2013-11-21 11:21 /user/jianwen/hello.txt</pre>
+复制文件夹：
+
+<pre>$ hdfs dfs -copyFromLocal junkdir /user/jianwen/
+hdfs dfs -ls /user/jianwen/junkdir 
+Found 1 items
+-rw-r--r--   3 jianwen hadoop         15 2013-11-21 11:23 /user/jianwen/junkdir/hello.txt</pre>
+=== 从HDFS向本地复制文件<code>copyToLocal</code> ===
+
+格式：
+
+<pre>$ hdfs dfs -copyToLocal [-ignoreCrc] [-crc] &lt;src&gt; ... &lt;localdst&gt;</pre>
+用法与<code>copyFromLocal</code>。
+
+=== 移动<code>moveFromLocal</code>和<code>moveToLocal</code> ===
+
+== 删除文件<code>rm</code>和<code>rmr</code> ==
+
+== 查看文件内容 ==
+
+=== <code>cat</code> ===
+
+<pre>hdfs dfs -cat /user/jianwen/hello.txt</pre>
+=== <code>tail</code> ===
+
 = 管理员命令 =
 
 = 使用alias简化命令 =
@@ -77,3 +114,4 @@ bin/hadoop command [genericOptions] [commandOptions]</pre>
 = 参考资料 =
 
 * “Hadoop MapReduce Tutorial v1.2.1” http://hadoop.apache.org/docs/r1.2.1/mapred_tutorial.html
+* “HDFS File System Shell Guide v1.2.1” http://hadoop.apache.org/docs/r1.2.1/file_system_shell.html

@@ -79,6 +79,52 @@ HDFS的管理在其他文档介绍。
 	The general command line syntax is
 	bin/hadoop command [genericOptions] [commandOptions]
 
+复制和移动文件
+------
+
+### 从本地向HDFS复制文件```copyFromLocal```
+
+格式如下：
+
+	$ hdfs dfs -copyFromLocal <localsrc> ... <dst>
+
+复制单个文件：
+
+	$ hdfs dfs -copyFromLocal hello.txt /user/jianwen/
+	$ hdfs dfs -ls /user/jianwen/
+	Found 1 items
+	-rw-r--r--   3 jianwen hadoop         15 2013-11-21 11:21 /user/jianwen/hello.txt
+	
+复制文件夹：
+	
+	$ hdfs dfs -copyFromLocal junkdir /user/jianwen/
+	hdfs dfs -ls /user/jianwen/junkdir 
+	Found 1 items
+	-rw-r--r--   3 jianwen hadoop         15 2013-11-21 11:23 /user/jianwen/junkdir/hello.txt
+
+### 从HDFS向本地复制文件```copyToLocal```
+
+格式：
+
+	$ hdfs dfs -copyToLocal [-ignoreCrc] [-crc] <src> ... <localdst>
+
+用法与```copyFromLocal```。
+
+
+### 移动```moveFromLocal```和```moveToLocal```
+
+删除文件```rm```和```rmr```
+-----
+
+查看文件内容
+------
+
+### ```cat```
+
+	hdfs dfs -cat /user/jianwen/hello.txt
+
+### ```tail``` 
+
 管理员命令
 ======
 
@@ -89,3 +135,4 @@ HDFS的管理在其他文档介绍。
 ======
 
 * "Hadoop MapReduce Tutorial v1.2.1" <http://hadoop.apache.org/docs/r1.2.1/mapred_tutorial.html>
+* "HDFS File System Shell Guide v1.2.1" <http://hadoop.apache.org/docs/r1.2.1/file_system_shell.html>

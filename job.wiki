@@ -164,6 +164,7 @@ $ hdfs dfs -copyToLocal hdfs dfs -cat /user/jianwen/wordcount/output ./wordcount
 = TODO =
 
 * 在命令行，而不是代码中指定这些参数：作业名、并行Mapper/Reducer数量；
+* Java Makefile http://geosoft.no/development/javamake.html
 
 = 参考资料 =
 

@@ -131,6 +131,16 @@ HDFS的管理在其他文档介绍。
 使用alias简化命令
 ======
 
+	alias hls='hdfs dfs -ls'
+	alias hcat='hdfs dfs -cat'
+	alias hrm='hdfs dfs -rm'
+	alias hrmdir='hdfs dfs -rmdir'
+	alias hcpr='hdfs dfs -copyFromLocal'
+	alias hcpl='hdfs dfs -copyToLocal'
+	alias hmkdir='hdfs dfs -mkdir'
+	alias hdu='hdfs dfs -du'
+	alias hdf='hdfs dfs -df'
+
 参考资料
 ======
 

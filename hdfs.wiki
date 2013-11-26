@@ -111,6 +111,15 @@ Found 1 items
 
 = 使用alias简化命令 =
 
+<pre>alias hls='hdfs dfs -ls'
+alias hcat='hdfs dfs -cat'
+alias hrm='hdfs dfs -rm'
+alias hrmdir='hdfs dfs -rmdir'
+alias hcpr='hdfs dfs -copyFromLocal'
+alias hcpl='hdfs dfs -copyToLocal'
+alias hmkdir='hdfs dfs -mkdir'
+alias hdu='hdfs dfs -du'
+alias hdf='hdfs dfs -df'</pre>
 = 参考资料 =
 
 * “Hadoop MapReduce Tutorial v1.2.1” http://hadoop.apache.org/docs/r1.2.1/mapred_tutorial.html

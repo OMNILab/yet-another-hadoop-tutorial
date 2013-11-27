@@ -1,0 +1,651 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link title="new" rel="stylesheet" href="/css/main.css" type="text/css">
+<link REL="shortcut icon" HREF="/favicon.ico" TYPE="image/x-icon">
+<link rel="search" type="application/opensearchdescription+xml" href="//www.gentoo.org/search/www-gentoo-org.xml" title="Gentoo Website">
+<link rel="search" type="application/opensearchdescription+xml" href="//www.gentoo.org/search/forums-gentoo-org.xml" title="Gentoo Forums">
+<link rel="search" type="application/opensearchdescription+xml" href="//www.gentoo.org/search/bugs-gentoo-org.xml" title="Gentoo Bugzilla">
+<link rel="search" type="application/opensearchdescription+xml" href="//www.gentoo.org/search/packages-gentoo-org.xml" title="Gentoo Packages">
+<link rel="search" type="application/opensearchdescription+xml" href="//www.gentoo.org/search/archives-gentoo-org.xml" title="Gentoo List Archives">
+<link rel="alternate" type="application/rss+xml" title="Gentoo Linux News RDF" href="//www.gentoo.org/rdf/en/gentoo-news.rdf">
+<title>
+        Gentoo Linux -- Gentoo Linux News</title>
+</head>
+<body style="margin:0px;" bgcolor="#000000"><table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top" height="125" width="1%" bgcolor="#45347b"><a href="/"><img border="0" src="/images/gtop-www.jpg" alt="Gentoo Logo"></a></td>
+<td valign="bottom" align="left" bgcolor="#000000" colspan="2" lang="en"><p class="menu">
+<a class="menulink" href="/main/en/about.xml">About</a> | 
+<a class="menulink" href="/proj/en/">Projects</a> | 
+<a class="menulink" href="/doc/en/">Docs</a> | 
+<a class="menulink" href="https://forums.gentoo.org/">Forums</a> | 
+<a class="menulink" href="/main/en/lists.xml">Lists</a> | 
+<a class="menulink" href="http://bugs.gentoo.org/">Bugs</a> | 
+<a class="menulink" href="/main/en/where.xml">Get Gentoo!</a> | 
+<a class="menulink" href="/main/en/support.xml">Support</a> | 
+<a class="menulink" href="http://planet.gentoo.org/">Planet</a> | 
+<a class="menulink" href="https://wiki.gentoo.org/">Wiki</a>
+</p></td>
+</tr>
+<tr>
+<td valign="top" align="right" width="1%" bgcolor="#dddaec"><table width="100%" cellspacing="0" cellpadding="0" border="0">
+<tr><td height="1%" valign="top" align="right"><img src="/images/gridtest.gif" alt="Gentoo Spaceship"></td></tr>
+<tr><td height="99%" valign="top" align="left"><table cellspacing="0" cellpadding="5" border="0"><tr><td valign="top" class="leftmenu" lang="en">
+<p class="altmenu">Get Started<br>
+<a class="altlink" href="/doc/en/handbook/">Gentoo Handbook</a><br>
+<a class="altlink" href="/doc/en/?catid=install#doc_chap2">Installation Docs</a><br>
+<a class="altlink" href="/main/en/where.xml">Downloads</a><br><br>
+News<br>
+<a class="altlink" href="/security/en/">Security Announcements</a><br>
+<a class="altlink" href="https://www.google.com/calendar/embed?src=88di0t0pl2cfau7oak48rbccfs%40group.calendar.google.com&amp;showCalendars=0&amp;color=%235229A3">Calendar</a><br><br>
+Documentation<br>
+<a class="altlink" href="/doc/en/handbook/">Gentoo Handbook</a><br>
+<a class="altlink" href="/doc/en/list.xml?desc=1">Documentation List</a><br>
+<a class="altlink" href="/doc/en/articles/">IBM dW/Intel article archive</a><br><br>
+Get Gentoo<br>
+<a class="altlink" href="/main/en/where.xml">Downloads</a><br>
+<a class="altlink" href="/main/en/mirrors2.xml">Mirrors</a><br><br>
+
+Community<br>
+<a class="altlink" href="https://forums.gentoo.org/">Discussion Forums</a><br>
+<a class="altlink" href="/main/en/irc.xml">IRC Channels</a><br>
+<a class="altlink" href="/main/en/lists.xml">Mailing Lists</a><br>
+<a class="altlink" href="http://bugs.gentoo.org">Report Issues</a><br>
+<a class="altlink" href="http://planet.gentoo.org">Planet (Blogs)</a><br>
+<a class="altlink" href="https://packages.gentoo.org/">Online Package Database</a><br>
+<a class="altlink" href="https://wiki.gentoo.org/">Wiki</a><br>
+<a class="altlink" href="/main/en/contact.xml">Contact Us</a><br>
+<a class="altlink" href="/main/en/sponsors.xml">Sponsors</a><br><br>
+Get Involved<br>
+<a class="altlink" href="http://bugs.gentoo.org">Report Issues</a><br>
+<a class="altlink" href="/proj/en/devrel/staffing-needs/">Help Wanted</a><br>
+<a class="altlink" href="/proj/en/qa/proxy-maintainers/">Help maintaining packages</a><br>
+<a class="altlink" href="https://forums.gentoo.org/">Discussion Forums</a><br>
+<a class="altlink" href="/main/en/irc.xml">IRC Channels</a><br>
+<a class="altlink" href="/main/en/lists.xml">Mailing Lists</a><br>
+<a class="altlink" href="/proj/en/devrel/handbook/handbook.xml">Become a Developer</a><br>
+<a class="altlink" href="/proj/en/userrel/adopt-a-dev/">Offer Resources</a><br>
+<a class="altlink" href="/proj/en/glep/">Enhancement Proposals (GLEPs)</a><br>
+<a class="altlink" href="http://anoncvs.gentoo.org/">Source Repositories</a><br>
+<a class="altlink" href="https://devmanual.gentoo.org">Developer's Manual</a><br><br>
+Other<br>
+<a class="altlink" href="/proj/en/devrel/roll-call/userinfo.xml">Developer List</a><br>
+<a class="altlink" href="/proj/en/devrel/roll-call/devmap.xml">Developer Map</a><br>
+<a class="altlink" href="/main/en/stores.xml">Gentoo Stores</a><br>
+<a class="altlink" href="/proj/en/">Projects</a><br><br>
+About<br>
+<a class="altlink" href="/main/en/about.xml">About Gentoo</a><br>
+<a class="altlink" href="/main/en/philosophy.xml">Philosophy</a><br>
+<a class="altlink" href="/main/en/contract.xml">Social Contract</a><br>
+<a class="altlink" href="/main/en/name-logo.xml">Name and Logo Guidelines</a><br>
+<a class="altlink" href="/main/en/graphics.xml">Logos and themes</a><br>
+<a class="altlink" href="/main/en/shots.xml">Screenshots</a><br><br>
+</p>
+<br><br>
+</td></tr></table></td></tr>
+</table></td>
+<td valign="top" bgcolor="#ffffff">
+<p class="news"><img class="newsicon" src="/images/gentoo-new.gif" alt="Gentoo logo"><span class="newsitem" lang="en">We produce Gentoo Linux, a special flavor of Linux that
+                can be automatically optimized and customized for just
+                about any application or need. Extreme performance,
+                configurability and a top-notch user and developer
+                community are all hallmarks of the Gentoo experience.
+                To learn more, read our <b><a href="/main/en/about.xml">about
+                page</a></b>.</span></p>
+<div class="news">
+<p class="newshead" lang="en"><a href=""><b>New Packages</b></a><br><font size="0.90em">
+           Posted on November 26, 2013
+      by packages.gentoo.org</font></p>
+<img class="newsicon" src="/images/icon-cow.png" alt="Larry the Cow"><div class="newsitem"><table class="ntable">
+<tr>
+<td class="tableinfo"><a href="http://packages.gentoo.org/package/dev-ruby/shoulda-context?ts=2013-11-26T20:01:15Z">dev-ruby/shoulda-context-1.1.4</a></td>
+<td class="tableinfo">Context framework extracted from Shoulda</td>
+</tr>
+<tr>
+<td class="tableinfo"><a href="http://packages.gentoo.org/package/sci-astronomy/erfa?ts=2013-11-26T17:18:15Z">sci-astronomy/erfa-1.0.1</a></td>
+<td class="tableinfo">Essential Routines for Fundamental Astronomy</td>
+</tr>
+<tr>
+<td class="tableinfo"><a href="http://packages.gentoo.org/package/net-misc/guacamole-server?ts=2013-11-26T12:48:44Z">net-misc/guacamole-server-0.8.3</a></td>
+<td class="tableinfo">This is the proxy-daemon used by www-apps/guacamole.</td>
+</tr>
+<tr>
+<td class="tableinfo"><a href="http://packages.gentoo.org/package/net-libs/pacparser?ts=2013-11-26T05:29:31Z">net-libs/pacparser-1.3.1</a></td>
+<td class="tableinfo"></td>
+</tr>
+<tr>
+<td class="tableinfo"><a href="http://packages.gentoo.org/package/dev-ruby/ruby_gntp?ts=2013-11-26T03:20:26Z">dev-ruby/ruby_gntp-0.3.4</a></td>
+<td class="tableinfo">Ruby library for GNTP(Growl Notification Transport Protocol)</td>
+</tr>
+<tr>
+<td class="tableinfo"><a href="http://packages.gentoo.org/package/dev-lang/julia?ts=2013-11-25T23:40:37Z">dev-lang/julia-0.2.0</a></td>
+<td class="tableinfo">High-level, high-performance dynamic programming language for technical computing</td>
+</tr>
+<tr>
+<td class="tableinfo"><a href="http://packages.gentoo.org/package/dev-ruby/connection_pool?ts=2013-11-25T01:55:17Z">dev-ruby/connection_pool-1.1.0</a></td>
+<td class="tableinfo">Generic connection pooling for Ruby</td>
+</tr>
+<tr>
+<td class="tableinfo"><a href="http://packages.gentoo.org/package/app-backup/rdumpfs?ts=2013-11-25T00:41:57Z">app-backup/rdumpfs-20131002</a></td>
+<td class="tableinfo">a rsync-based dump file system backup tool</td>
+</tr>
+<tr>
+<td class="tableinfo"><a href="http://packages.gentoo.org/package/games-action/brutal-legend?ts=2013-11-24T23:29:34Z">games-action/brutal-legend-20130615</a></td>
+<td class="tableinfo">Crush skulls, ravage the road in the Deuce, and unleash the power of Heavy Metal to reign down fire from the sky</td>
+</tr>
+<tr>
+<td class="tableinfo"><a href="http://packages.gentoo.org/package/dev-java/jackson-mapper?ts=2013-11-24T18:45:27Z">dev-java/jackson-mapper-1.9.13</a></td>
+<td class="tableinfo">Mapping component of jackson for data binding</td>
+</tr>
+</table></div>
+</div>
+<div class="news">
+<p class="newshead" lang="en"><a href=""><b>Blog posts</b></a><br><font size="0.90em">
+           Posted on November 26, 2013
+      by planet.gentoo.org</font></p>
+<img class="newsicon" src="/images/G-Earth.png" alt="Planet Earth"><div class="newsitem"><table class="ntable">
+<tr>
+<td class="tableinfo">Paweł Hajdan, Jr.</td>
+<td class="tableinfo"><a href="http://phajdan-jr.blogspot.com/2013/11/third-party-libraries-in-chromium.html">Third party libraries in Chromium sources</a></td>
+</tr>
+<tr>
+<td class="tableinfo">Richard Freeman</td>
+<td class="tableinfo"><a href="http://rich0gentoo.wordpress.com/2013/11/26/btrfs-and-snapper-with-portage-on-gentoo/">btrfs and snapper with portage on Gentoo</a></td>
+</tr>
+</table></div>
+</div>
+<div class="news">
+<p class="newshead" lang="en"><a href=""><b>GLSA 201311-16: sys-process/fcron</b></a><br><font size="0.90em">
+           Posted on November 25, 2013
+      by Gentoo Security Team</font></p>
+<img class="newsicon" src="/images/icon-clock.png" alt="Clock"><div class="newsitem"><p><b>fcron: Information disclosure</b><br>A vulnerability has been found in fcron, allowing local attackers
+    to conduct symlink attacks. 
+  <br>See <a href="/security/en/glsa/glsa-201311-16.xml">GLSA 201311-16</a> for more information.</p></div>
+</div>
+<div class="news">
+<p class="newshead" lang="en"><a href=""><b>GLSA 201311-15: net-analyzer/zabbix</b></a><br><font size="0.90em">
+           Posted on November 25, 2013
+      by Gentoo Security Team</font></p>
+<img class="newsicon" src="/images/icon-clock.png" alt="Clock"><div class="newsitem"><p><b>Zabbix: Multiple vulnerabilities</b><br>Multiple vulnerabilities have been found in Zabbix, possibly
+    leading to SQL injection attacks, Denial of Service, or information
+    disclosure. 
+  <br>See <a href="/security/en/glsa/glsa-201311-15.xml">GLSA 201311-15</a> for more information.</p></div>
+</div>
+<div class="news">
+<p class="newshead" lang="en"><a href=""><b>GLSA 201311-14: dev-qt/qtcore (and 1 more package)</b></a><br><font size="0.90em">
+           Posted on November 22, 2013
+      by Gentoo Security Team</font></p>
+<img class="newsicon" src="/images/icon-clock.png" alt="Clock"><div class="newsitem"><p><b>QtCore, QtGui: Multiple vulnerabilities</b><br>Multiple vulnerabilities have been discovered in QtCore and QtGui,
+    possibly resulting in execution of arbitrary code, Denial of Service, or
+    man-in-the-middle attacks.
+  <br>See <a href="/security/en/glsa/glsa-201311-14.xml">GLSA 201311-14</a> for more information.</p></div>
+</div>
+<div class="news">
+<p class="newshead" lang="en"><a href=""><b>GLSA 201311-11: net-p2p/ctorrent</b></a><br><font size="0.90em">
+           Posted on November 22, 2013
+      by Gentoo Security Team</font></p>
+<img class="newsicon" src="/images/icon-clock.png" alt="Clock"><div class="newsitem"><p><b>CTorrent: User-assisted arbitrary code execution</b><br>A stack-based buffer overflow in CTorrent might allow a remote
+    attacker to execute arbitrary code or cause a Denial of Service condition.
+  <br>See <a href="/security/en/glsa/glsa-201311-11.xml">GLSA 201311-11</a> for more information.</p></div>
+</div>
+<div class="news">
+<p class="newshead" lang="en"><a href=""><b>GLSA 201311-13: net-misc/openvpn</b></a><br><font size="0.90em">
+           Posted on November 20, 2013
+      by Gentoo Security Team</font></p>
+<img class="newsicon" src="/images/icon-clock.png" alt="Clock"><div class="newsitem"><p><b>OpenVPN: Multiple vulnerabilities</b><br>Multiple vulnerabilities have been found in OpenVPN, allowing
+    remote attackers to read encrypted traffic.
+  <br>See <a href="/security/en/glsa/glsa-201311-13.xml">GLSA 201311-13</a> for more information.</p></div>
+</div>
+<div class="news">
+<p class="newshead" lang="en"><a href=""><b>GLSA 201311-12: net-p2p/opendchub</b></a><br><font size="0.90em">
+           Posted on November 20, 2013
+      by Gentoo Security Team</font></p>
+<img class="newsicon" src="/images/icon-clock.png" alt="Clock"><div class="newsitem"><p><b>Open DC Hub: Arbitrary code execution</b><br>A vulnerability in Open DC Hub could result in execution of
+    arbitrary code.
+  <br>See <a href="/security/en/glsa/glsa-201311-12.xml">GLSA 201311-12</a> for more information.</p></div>
+</div>
+<div class="news">
+<p class="newshead" lang="en"><a href=""><b>GLSA 201311-10: media-gfx/graphicsmagick</b></a><br><font size="0.90em">
+           Posted on November 19, 2013
+      by Gentoo Security Team</font></p>
+<img class="newsicon" src="/images/icon-clock.png" alt="Clock"><div class="newsitem"><p><b>GraphicsMagick: Multiple vulnerabilities</b><br>Multiple vulnerabilities have been found in GraphicsMagick,
+    allowing remote attackers to execute arbitrary code or cause a Denial of
+    Service condition.
+  <br>See <a href="/security/en/glsa/glsa-201311-10.xml">GLSA 201311-10</a> for more information.</p></div>
+</div>
+<div class="news">
+<p class="newshead" lang="en"><a href=""><b>Blog posts</b></a><br><font size="0.90em">
+           Posted between November 18, 2013 and November 14, 2013
+      by planet.gentoo.org</font></p>
+<img class="newsicon" src="/images/G-Earth.png" alt="Planet Earth"><div class="newsitem"><table class="ntable">
+<tr>
+<td class="tableinfo">Alexys Jacob</td>
+<td class="tableinfo"><a href="http://www.ultrabug.fr/keepalived-v1-2-9/">keepalived v1.2.9</a></td>
+</tr>
+<tr>
+<td class="tableinfo">Patrick Lauer</td>
+<td class="tableinfo"><a href="http://gentooexperimental.org/~patrick/weblog/archives/2013-11.html#e2013-11-14T08_05_59.txt">Small HOWTO: Virtual networking with KVM</a></td>
+</tr>
+<tr>
+<td class="tableinfo">Paweł Hajdan, Jr.</td>
+<td class="tableinfo"><a href="http://phajdan-jr.blogspot.com/2013/11/when-libraries-you-use-are-moving-too.html">When the libraries you use are moving too fast</a></td>
+</tr>
+<tr>
+<td class="tableinfo">Richard Freeman</td>
+<td class="tableinfo"><a href="http://rich0gentoo.wordpress.com/2013/11/17/the-balance-of-power-in-gentoo/">The Balance of Power in Gentoo</a></td>
+</tr>
+<tr>
+<td class="tableinfo">Robin Johnson</td>
+<td class="tableinfo"><a href="http://robbat2.livejournal.com/240335.html">python-exec: solutions for package conflicts, and making it easier on users</a></td>
+</tr>
+</table></div>
+</div>
+<div class="news">
+<p class="newshead" lang="en"><a href=""><b>GLSA 201311-09: net-dialup/freeradius</b></a><br><font size="0.90em">
+           Posted on November 13, 2013
+      by Gentoo Security Team</font></p>
+<img class="newsicon" src="/images/icon-clock.png" alt="Clock"><div class="newsitem"><p><b>FreeRADIUS: Multiple vulnerabilities</b><br>Multiple vulnerabilities have been found in FreeRADIUS, the worst
+    of which allow execution of arbitrary code or Denial of Service.
+  <br>See <a href="/security/en/glsa/glsa-201311-09.xml">GLSA 201311-09</a> for more information.</p></div>
+</div>
+<div class="news">
+<p class="newshead" lang="en"><a href=""><b>GLSA 201311-08: media-libs/netpbm</b></a><br><font size="0.90em">
+           Posted on November 13, 2013
+      by Gentoo Security Team</font></p>
+<img class="newsicon" src="/images/icon-clock.png" alt="Clock"><div class="newsitem"><p><b>Netpbm: User-assisted arbitrary code execution</b><br>A vulnerability in Netpbm could result in execution of arbitrary
+    code or Denial of Service.
+  <br>See <a href="/security/en/glsa/glsa-201311-08.xml">GLSA 201311-08</a> for more information.</p></div>
+</div>
+<div class="news">
+<p class="newshead" lang="en"><a href=""><b>Blog posts</b></a><br><font size="0.90em">
+           Posted between November 13, 2013 and August 29, 2013
+      by planet.gentoo.org</font></p>
+<img class="newsicon" src="/images/G-Earth.png" alt="Planet Earth"><div class="newsitem"><table class="ntable">
+<tr>
+<td class="tableinfo" rowspan="2">Agostino Sarubbo</td>
+<td class="tableinfo"><a href="http://blogs.gentoo.org/ago/2013/08/30/use-an-eol-kernel/#utm_source=feed&amp;utm_medium=feed&amp;utm_campaign=feed">Use an EOL Kernel</a></td>
+</tr>
+<tr><td class="tableinfo"><a href="http://blogs.gentoo.org/ago/2013/08/29/the-maintainer-is-not-the-first-listed-in-the-changelog/#utm_source=feed&amp;utm_medium=feed&amp;utm_campaign=feed">The maintainer is not the first listed in the ChangeLog</a></td></tr>
+<tr>
+<td class="tableinfo" rowspan="2">Alex Legler</td>
+<td class="tableinfo"><a href="http://a3li.li/2013/11/now-live-gentoo-infra-status/">Now live: Gentoo Infra Status</a></td>
+</tr>
+<tr><td class="tableinfo"><a href="http://a3li.li/2013/11/improving-the-bugzilla-product-selection/">Improving the Bugzilla Product Selection</a></td></tr>
+<tr>
+<td class="tableinfo" rowspan="7">Alexys Jacob</td>
+<td class="tableinfo"><a href="http://www.ultrabug.fr/mongodb-v2-4-8-rabbitmq-v3-2-1-rsyslog-v-7-4-6/">mongoDB v2.4.8, rabbitMQ v3.2.1, rsyslog v7.4.6</a></td>
+</tr>
+<tr><td class="tableinfo"><a href="http://www.ultrabug.fr/drop-down-terminal-in-i3/">Drop-down terminal in i3</a></td></tr>
+<tr><td class="tableinfo"><a href="http://www.ultrabug.fr/mongodb-v2-4-7-pymongo-v2-6-3/">mongoDB v2.4.7 &amp;amp; pymongo v2.6.3</a></td></tr>
+<tr><td class="tableinfo"><a href="http://www.ultrabug.fr/latest-cluster-releases/">Latest cluster releases</a></td></tr>
+<tr><td class="tableinfo"><a href="http://www.ultrabug.fr/rsyslog-v7-4-4-released/">rsyslog : v7.4.4 released</a></td></tr>
+<tr><td class="tableinfo"><a href="http://www.ultrabug.fr/pacemaker-v1-1-10-corosync-v2-3-1/">pacemaker v1.1.10 &amp;amp; corosync v2.3.1</a></td></tr>
+<tr><td class="tableinfo"><a href="http://www.ultrabug.fr/py3status-v1-0/">py3status v1.0</a></td></tr>
+<tr>
+<td class="tableinfo" rowspan="4">Andreas K. Hüttel</td>
+<td class="tableinfo"><a href="http://dilfridge.blogspot.com/2013/11/deactivating-rc4-cipher-in-firefox.html">Deactivating the RC4 cipher in Firefox</a></td>
+</tr>
+<tr><td class="tableinfo"><a href="http://dilfridge.blogspot.com/2013/11/speeding-up-app-officelibreoffice-bin.html">Speeding up app-office/libreoffice-bin generation</a></td></tr>
+<tr><td class="tableinfo"><a href="http://dilfridge.blogspot.com/2013/10/gentoo-on-facebook.html">Gentoo on Facebook</a></td></tr>
+<tr><td class="tableinfo"><a href="http://dilfridge.blogspot.com/2013/10/app-emulationvmware-workstation-10-and.html">app-emulation/vmware-workstation-10 and friends</a></td></tr>
+<tr>
+<td class="tableinfo">David Abbott</td>
+<td class="tableinfo"><a href="http://gentoo-pr.org/node/43">Grub2 Systemd | rebuild nvidia drivers for new kernel</a></td>
+</tr>
+<tr>
+<td class="tableinfo">Gentoo Monthly Newsletter</td>
+<td class="tableinfo"><a href="http://blogs.gentoo.org/news/2013/11/01/gentoo-monthly-newsletter-31-october-2013/#utm_source=feed&amp;utm_medium=feed&amp;utm_campaign=feed">Gentoo Monthly Newsletter: October 2013</a></td>
+</tr>
+<tr>
+<td class="tableinfo" rowspan="2">Greg KH</td>
+<td class="tableinfo"><a href="http://kroah.com/log/blog/2013/09/11/xxd-i/">binary blobs to C structures</a></td>
+</tr>
+<tr><td class="tableinfo"><a href="http://kroah.com/log/blog/2013/09/02/booting-a-self-signed-linux-kernel/">booting a self-signed Linux kernel</a></td></tr>
+<tr>
+<td class="tableinfo">Hanno Böck</td>
+<td class="tableinfo"><a href="http://blog.hboeck.de/archives/820-My-AC100-travel-laptop.html">My AC100 travel laptop</a></td>
+</tr>
+<tr>
+<td class="tableinfo" rowspan="2">Luca Barbato</td>
+<td class="tableinfo"><a href="http://blogs.gentoo.org/lu_zero/2013/11/06/some-ideas-regarding-and-usr/#utm_source=feed&amp;utm_medium=feed&amp;utm_campaign=feed">Some ideas regarding / and /usr</a></td>
+</tr>
+<tr><td class="tableinfo"><a href="http://blogs.gentoo.org/lu_zero/2013/11/04/early-boot-fun/#utm_source=feed&amp;utm_medium=feed&amp;utm_campaign=feed">Early boot fun</a></td></tr>
+<tr>
+<td class="tableinfo">Pacho Ramos</td>
+<td class="tableinfo"><a href="http://my.opera.com/pacho/blog/show.dml/94308242">Testing needed to get Gnome 3.8 rekeyworded on alpha, sparc and ia64</a></td>
+</tr>
+<tr>
+<td class="tableinfo" rowspan="7">Patrick Lauer</td>
+<td class="tableinfo"><a href="http://gentooexperimental.org/~patrick/weblog/archives/2013-10.html#e2013-10-29T13_39_32.txt">Systemd propaganda: It's a crap!</a></td>
+</tr>
+<tr><td class="tableinfo"><a href="http://gentooexperimental.org/~patrick/weblog/archives/2013-10.html#e2013-10-14T11_41_21.txt">Fixing Sloccount</a></td></tr>
+<tr><td class="tableinfo"><a href="http://gentooexperimental.org/~patrick/weblog/archives/2013-10.html#e2013-10-12T08_19_14.txt">TCC is self-hosting again!</a></td></tr>
+<tr><td class="tableinfo"><a href="http://gentooexperimental.org/~patrick/weblog/archives/2013-10.html#e2013-10-11T06_21_24.txt">Timing boot, the hard way</a></td></tr>
+<tr><td class="tableinfo"><a href="http://gentooexperimental.org/~patrick/weblog/archives/2013-10.html#e2013-10-09T09_33_21.txt">Faster Boot Again Now</a></td></tr>
+<tr><td class="tableinfo"><a href="http://gentooexperimental.org/~patrick/weblog/archives/2013-10.html#e2013-10-09T08_32_52.txt">Booting Seriously Fast Now</a></td></tr>
+<tr><td class="tableinfo"><a href="http://gentooexperimental.org/~patrick/weblog/archives/2013-10.html#e2013-10-06T11_58_40.txt">Booting fast(er)</a></td></tr>
+<tr>
+<td class="tableinfo">Rafael Goncalves Martins</td>
+<td class="tableinfo"><a href="http://rafaelmartins.eng.br/post/gsoc-and-scrum/">GSoC and Scrum</a></td>
+</tr>
+<tr>
+<td class="tableinfo" rowspan="2">Robin Johnson</td>
+<td class="tableinfo"><a href="http://robbat2.livejournal.com/240027.html">Looking for a new graphics card</a></td>
+</tr>
+<tr><td class="tableinfo"><a href="http://robbat2.livejournal.com/239658.html">Tracking all prior open-source contributions</a></td></tr>
+<tr>
+<td class="tableinfo" rowspan="2">Sebastian Pipping</td>
+<td class="tableinfo"><a href="http://blog.hartwork.org/?p=2117">GNU Chess 6.1.0 introducing graphic (terminal) mode</a></td>
+</tr>
+<tr><td class="tableinfo"><a href="http://blog.hartwork.org/?p=2072">ansi2html now supporting eix output</a></td></tr>
+<tr>
+<td class="tableinfo" rowspan="7">Sven Vermeulen</td>
+<td class="tableinfo"><a href="http://blog.siphos.be/2013/11/new-selinux-userspace-release-2/">New SELinux userspace release</a></td>
+</tr>
+<tr><td class="tableinfo"><a href="http://blog.siphos.be/2013/11/the-mix-of-libffi-with-other-changes/">The mix of libffi with other changes</a></td></tr>
+<tr><td class="tableinfo"><a href="http://blog.siphos.be/2013/10/gentoo-hardened-meeting-201310/">Gentoo Hardened meeting 201310</a></td></tr>
+<tr><td class="tableinfo"><a href="http://blog.siphos.be/2013/09/a-bug-please/">A bug please…</a></td></tr>
+<tr><td class="tableinfo"><a href="http://blog.siphos.be/2013/09/aaaand-were-back-hardened-monthly-meeting/">Aaaand we’re back – hardened monthly meeting</a></td></tr>
+<tr><td class="tableinfo"><a href="http://blog.siphos.be/2013/09/underestimated-or-underused-portage-elogging/">Underestimated or underused: Portage (e)logging</a></td></tr>
+<tr><td class="tableinfo"><a href="http://blog.siphos.be/2013/08/gentoo-hardened-progress-report/">Gentoo Hardened progress report</a></td></tr>
+<tr>
+<td class="tableinfo">Tomáš Chvátal</td>
+<td class="tableinfo"><a href="http://blogs.gentoo.org/scarabeus/2013/11/08/libreoffice-state-in-gentoo-and-opensuse/#utm_source=feed&amp;utm_medium=feed&amp;utm_campaign=feed">Libreoffice state in Gentoo and openSUSE</a></td>
+</tr>
+</table></div>
+</div>
+<div class="news">
+<p class="newshead" lang="en"><a href="/news/20130824-imagination-tech-donation.xml"><b>Imagination Technologies donates MIPS64 build systems</b></a><br><font size="0.90em">
+           Posted on August 24, 2013
+      by Robin H. Johnson</font></p>
+<img class="newsicon" src="/images/icon-gentoo.png" alt="gentoo"><div class="newsitem">
+<center><a href="http://www.imgtec.com/News/Release/index.asp?NewsID=783"><img border="0" src="/images/sponsors/imagination-tech.png" alt="Imagination Technologies"></a></center>
+<p>
+<a href="http://www.imgtec.com/News/Release/index.asp?NewsID=783">Imagination
+Technologies</a> has donated two MIPS64-based Ubiquiti ERLite-3 routers,
+plus resources to aid Gentoo in providing up-to-date root file system builds
+for MIPS.
+</p>
+<p>
+<a href="http://www.imgtec.com/News/Release/index.asp?NewsID=783">Imagination Technologies</a>
+is a global leader in multimedia, processor and communication technologies. The
+company creates and licenses market-leading IP solutions for graphics, video
+and vision, CPU/general purpose processing, multi-standard communications and
+connectivity, and cross-platform voice and video communications. Imagination's
+MIPS CPU cores and architectures range from solutions for ultra low-power
+32-bit microcontrollers to high-performance 32/64-bit advanced applications and
+network processing.  MIPS is supported by a broad ecosystem of tools and
+software including open source Linux distributions like Gentoo. 
+</p>
+</div>
+</div>
+<div class="news">
+<p class="newshead" lang="en"><a href="/news/20130522-linuxtag.xml"><b>Gentoo at LinuxTag 2013 in Berlin</b></a><br><font size="0.90em">
+           Posted on May 8, 2013
+      by David Abbott</font></p>
+<img class="newsicon" src="/images/icon-gentoo.png" alt="gentoo"><div class="newsitem">
+<p>
+  <a href="http://www.linuxtag.org/2013/"><img src="/images/pr/Thumbnail_LinuxTag-Logo-plain-yellow_03.jpg" alt=""></a>
+</p>
+<p>
+  <b>LinuxTag 2013 </b>runs from May 22nd to May 25th in Berlin, Germany. With more
+    than 10,000 visitors last year, it is one of the biggest Linux and open
+    source events in Europe. 
+</p>
+<p>
+You will find the Gentoo booth at <b>Hall 7.1c, Booth 179</b>. Come and visit
+us! You will meet many of our developers and users, talk with us, plus get some
+of the Gentoo merchandise you have always wanted.
+</p>
+</div>
+</div>
+<div class="news">
+<p class="newshead" lang="en"><a href="/news/20130414-FOSSCOMM-2013.xml"><b>Gentoo at FOSSCOMM 2013</b></a><br><font size="0.90em">
+           Posted on April 14, 2013
+      by David Abbott</font></p>
+<img class="newsicon" src="/images/icon-gentoo.png" alt="gentoo"><div class="newsitem">
+<p>
+	<b>What?</b> FOSSCOMM 2013
+</p>
+<p>
+  <span class="emphasis">Free and Open Source Software COMmunities Meeting(FOSSCOMM) 2013</span>
+</p>
+<p>
+	<b>When?</b> 20th, April 2013 - 21st, April 2013</p>
+<p>
+	<b>Where?</b> Harokopio University, Athens, Greece 
+</p>
+<p>
+	<b>Website?</b> <a href="http://hua.fosscomm.gr">http://hua.fosscomm.gr</a> 
+</p>
+<p>
+FOSSCOMM 2013 is almost here, and Gentoo will be there!
+</p>
+<p>
+We will have a booth with Gentoo promo stuff, stickers, flyers, badges, live
+DVD's and much more! Whether you're a developer, user, or simply curious, be
+sure and stop by. We are also going to represent Gentoo in a round table with
+other foss communities. See you there!
+</p>
+<p>
+  <span class="emphasis"><a href="mailto:dastergon@gentoo.org">Pavlos Ratis</a> contributed the draft for this announcement.</span>
+</p>
+</div>
+</div>
+<div class="news">
+<p class="newshead" lang="en"><a href="/news/20121221-livedvd.xml"><b>Gentoo Linux releases 20121221 LiveDVD - End Of World Edition</b></a><br><font size="0.90em">
+           Posted on December 21, 2012
+      by Robin H. Johnson</font></p>
+<img class="newsicon" src="/images/icon-gentoo.png" alt="gentoo"><div class="newsitem">
+<br><a name="doc_chap1_fig1"></a><table cellspacing="0" cellpadding="0" border="0">
+<tr><td bgcolor="#7a5ada"><p class="codetitle">Figure 1.1: End of World</p></td></tr>
+<tr><td align="center" bgcolor="#ddddff"><img src="/proj/en/pr/releases/20121221/images/wallpaper/frontpage.png" alt="Fig. 1: End of World banner"></td></tr>
+</table>
+<br><p> 
+Gentoo Linux is proud to announce the availability of a new <b>LiveDVD</b> to
+celebrate the continued collaboration between Gentoo users and developers,
+ready to rock the end of the world (or at least mid-winter/Southern Solstice)!
+The LiveDVD features a superb list of packages, some of which are listed below.
+</p>
+<p>
+A special thanks to the <a href="/proj/en/infrastructure/">Gentoo
+  Infrastructure Team</a>. Their hard work behind the scenes provide the
+resources, services and technology necessary to support the Gentoo Linux
+project.
+</p>
+<ul>
+  <li>
+	Packages included in this release: Linux Kernel 3.6.8, Xorg 1.12.4, 
+	KDE 4.9.4, Gnome 3.4.2, XFCE 4.10, Fluxbox 1.3.2, Firefox 17.0.1, 
+	LibreOffice 3.6.4.3, Gimp 2.8.2-r1, Blender 2.64a, Amarok 2.6.0, 
+	Mplayer 2.2.0, Chromium 24.0.1312.35
+	and much more ...
+  </li>
+  <li>
+    If you want to see if your package is included we have generated both the
+    <a href="/proj/en/pr/releases/20121221/livedvd-x86-amd64-32ul-20121221.iso.PACKAGES.txt">x86 package
+      list</a>, and <a href="/proj/en/pr/releases/20121221/livedvd-amd64-multilib-20121221.iso.PACKAGES.txt">amd64 package
+      list</a>. 
+	  There is no new FAQ or artwork
+	  the 20121221 release, but you can still get the
+	  <a href="/proj/en/pr/releases/12.0/graphics.xml">12.0 artwork</a> plus
+	  DVD cases and covers for the 12.0 release; and view the <a href="/proj/en/pr/releases/12.1/faq.xml">12.1 FAQ</a> (persistence mode
+	  is not available in 20121221).
+  </li>
+  <li>
+<b>Special Features:</b>
+    <ul>
+	  <li>
+	    ZFSOnLinux
+	  </li>
+      <li>
+        Writable file systems using AUFS so you can emerge new packages!
+      </li>
+    </ul>
+  </li>
+</ul>
+<p>
+The LiveDVD is <b>available in two flavors</b>: a hybrid x86/x86_64 version, and
+an x86_64 multi lib version. The <span class="path" dir="ltr">livedvd-x86-amd64-32ul-20121221</span> version
+will work on 32-bit x86 or 64-bit x86_64. If your CPU architecture is x86, then
+boot with the default <span class="code" dir="ltr">gentoo</span> kernel. If your arch is <a href="/doc/en/gentoo-amd64-faq.xml#difference">amd64</a>, boot with the
+<span class="code" dir="ltr">gentoo64</span> kernel. This means you can boot a 64-bit kernel and install a
+customized 64-bit user land while using the provided 32-bit user land. The
+<span class="path" dir="ltr">livedvd-amd64-multilib-20121221</span> version is for x86_64 only.
+</p>
+<p>
+If you are ready to check it out, let our bouncer direct you to the closest
+<a href="http://bouncer.gentoo.org/fetch/gentoo-20121221-livedvd/x86/">x86
+  image</a> or <a href="http://bouncer.gentoo.org/fetch/gentoo-20121221-livedvd/amd64/">amd64
+  image</a> file.
+</p>
+<p>
+If you need support or have any questions, please visit the discussion thread 
+on our <a href="http://forums.gentoo.org/viewtopic-t-945596.html">forum</a>.
+</p>
+<p>
+<span class="emphasis">Thank you for your continued support,</span><br> Gentoo Linux Developers, 
+the <a href="/foundation/en/">Gentoo Foundation</a>, and the 
+<a href="/proj/en/pr/releases/20121221/livedvd-x86-amd64-32ul-20121221.iso.CREDITS.txt">Gentoo-Ten Project.</a>
+</p>
+</div>
+</div>
+<div class="news">
+<p class="newshead" lang="en"><a href="/news/20121018-Miniconf-OLPC-announcement.xml"><b>Miniconf: Gentoo on the OLPC XO-1.75</b></a><br><font size="0.90em">
+           Posted on October 18, 2012
+      by David Abbott</font></p>
+<img class="newsicon" src="/images/icon-cow.png" alt="Larry the Cow"><div class="newsitem">
+<p class="epigraph">
+At the <a href="/proj/en/miniconf/">Gentoo Miniconf 2012</a> in Prague we
+will install Gentoo on the <a href="http://wiki.laptop.org/go/XO-1.75"> OLPC
+	XO-1.75</a>, an ARM based laptop designed as an educational tool for
+children. If you are interested in joining us, come to the Gentoo booth and
+start hacking with us!
+<br><br><span class="episig">—Chí-Thanh Christopher Nguyễn</span><br><br></p>
+<center><img src="/images/pr/OLPC-Gentoo.png" alt=""></center>
+</div>
+</div>
+<div class="news">
+<p class="newshead" lang="en"><a href="/news/20120913-screenshot-winners-announcement.xml"><b>2012 Gentoo Screenshot Contest Results</b></a><br><font size="0.90em">
+           Posted on September 13, 2012
+      by David Abbott</font></p>
+<img class="newsicon" src="/images/icon-gentoo.png" alt="gentoo"><div class="newsitem">
+<p>
+  <b>Gentoo - Still alive and kicking ...</b> 
+</p>
+<p>
+As the quantity and quality of this year's entries will attest, Gentoo is
+alive, well, and taking no prisoners!
+</p>
+<p>
+We had 70 entries for the 2012 Gentoo screenshot contest, representing 11 different window managers / desktop environments. Thanks to all that participated, the <a href="http://sc.gentooligans.com/judges">judges</a> and <a href="http://forums.gentoo.org/profile.php?mode=viewprofile&amp;u=148232">likewhoa</a> for the <a href="http://sc.gentooligans.com/">screenshot site</a>.
+</p>
+<p>
+	<b><span class="emphasis"><a href="/proj/en/pr/2012-screenshot-winners.xml">The Winners!</a></span></b>
+</p>
+</div>
+</div>
+<div class="news">
+<p class="newshead" lang="en"><a href="/news/20120727-website-survey.xml"><b>Gentoo Website survey 2012 launched</b></a><br><font size="0.90em">
+           Posted on July 27, 2012
+      by Alex Legler</font></p>
+<img class="newsicon" src="/images/icon-gentoo.png" alt="gentoo"><div class="newsitem">
+<p>
+Building a website that fits the needs of users and editors alike is hard.
+That's why the Gentoo PR team would like to ask you a few questions about
+our websites, mainly www.gentoo.org, but also about our other sites.
+</p>
+<p>
+<b><a href="https://docs.google.com/spreadsheet/viewform?formkey=dGRCTF9zUlBrUzQ2N3p4Nm1td3NvNFE6MQ">Take the survey now</a></b>
+</p>
+<p>
+Thanks for your time and interest in making our website experience better!
+</p>
+</div>
+</div>
+<div class="news">
+<p class="newshead" lang="en"><a href="/news/20120705-2012-screenshot-contest-announcement.xml"><b>Gentoo Screenshot Contest 2012</b></a><br><font size="0.90em">
+           Posted on July 5, 2012
+      by David Abbott</font></p>
+<img class="newsicon" src="/images/icon-cow.png" alt="Larry the Cow"><div class="newsitem">
+<p>
+After the success of the <a href="/news/20110911-screenshot-winners-announcement.xml">2011 Screenshot
+  Contest</a> the Contest Team is doing it again! 
+</p>
+<p>
+Gentoo Users, Developers, and Staffers are encouraged to submit their sweetest
+screenshots. This year likewhoa went all out and put together a custom cms for
+us to use for the contest. Please head over to the <a href="/proj/en/pr/2012-screenshot-contest.xml">2012 Contest Page</a> for
+all of the details.
+</p>
+<p>
+  You can visit this <a href="http://forums.gentoo.org/viewtopic-p-7081240.html#7081240">forum post</a> for comments and suggestions. OK enough talk, get started tricking out that desktop.
+</p>
+</div>
+</div>
+<div class="news">
+<p class="newshead" lang="en"><a href="/news/20120614-miniconf-registration-announcement.xml"><b>Registration Now Open: Gentoo Miniconf 2012 in Prague, CZ</b></a><br><font size="0.90em">
+           Posted on June 14, 2012
+      by David Abbott</font></p>
+<img class="newsicon" src="/images/icon-gentoo.png" alt="gentoo"><div class="newsitem">
+<p>
+Today, the most ambitious <a href="http://www.linuxdays.cz/en/">Free Software
+  event</a> of the Czech Republic officially opens registration! We’ve got an
+awesome event for you in store with sessions on all major subjects in Free
+Software and around it. Entry will be free of charge for everyone and we’ll
+give you 4 events AND a bonus track for that money! One of the events will be
+our very own <b><a href="/proj/en/miniconf/">Gentoo Miniconf 2012.</a></b>
+</p>
+<p>
+We hope to see you all in Prague on October 20-23 2012!
+</p>
+<p>
+<span class="emphasis"><a href="mailto:tampakrap@gentoo.org">Theo Chatzimichos</a> provided the draft for this announcement.</span>
+</p>
+</div>
+</div>
+<div class="news">
+<p class="newshead" lang="en"><b>Older News</b></p>
+<ul>
+<li><b><a class="altlink" href="/news/20120608-x32_abi.xml">x32 ABI release candidates</a></b></li>
+<li><b><a class="altlink" href="/news/20120608-arm-stages-hardfp.xml">ARM v6+ stages switching to hardfp</a></b></li>
+<li><b><a class="altlink" href="/news/20120530-miniconf.xml">Bootstrapping Awesome: Gentoo Miniconf 2012 in Prague, CZ</a></b></li>
+<li><b><a class="altlink" href="/news/20120530-flossweekly.xml">Gentoo developer Jeff Horelick talks to the FLOSS Weekly podcast</a></b></li>
+<li><b><a class="altlink" href="/news/20120523-linuxtag.xml">Gentoo at LinuxTag 2012 in Berlin</a></b></li>
+<li><b><a class="altlink" href="/news/20120508-FOSSCOMM-2012.xml">Gentoo at FOSSCOMM 2012</a></b></li>
+<li><b><a class="altlink" href="/news/20120403-gsoc-2011.xml">Google Summer of Code applications close April 6</a></b></li>
+<li><b><a class="altlink" href="/news/20120401-livedvd.xml">Gentoo Linux releases 12.1 LiveDVD</a></b></li>
+<li><b><a class="altlink" href="/news/20120320-archer.xml">Gentoo spotted on space station.</a></b></li>
+<li><b><a class="altlink" href="/news/20120119-milan-interview-announcement.xml">Interview with Milan Kazarka</a></b></li>
+<li><b><a class="altlink" href="/news/20120118-scale-10x.xml">Gentoo at SCALE 10x</a></b></li>
+<li><b><a class="altlink" href="/news/20120102-livedvd.xml">Gentoo Linux releases 12.0 LiveDVD</a></b></li>
+<li><b><a class="altlink" href="/news/20111109-wiki-announcement.xml">Announcing the latest installment in Gentoo greatness, the official Gentoo Wiki!</a></b></li>
+<li><b><a class="altlink" href="/news/20110911-screenshot-winners-announcement.xml">2011 Gentoo Screenshot Contest Results</a></b></li>
+<li><b><a class="altlink" href="/news/20110807-livedvd.xml">Gentoo Linux releases 11.2 LiveDVD</a></b></li>
+<li><b><a class="altlink" href="/news/20110701-2011-screenshot-contest-announcement.xml">Gentoo Screenshot Contest 2011</a></b></li>
+<li><b><a class="altlink" href="/news/20110630-larry-announcement.xml">Larry the Cow Embraces Freedom</a></b></li>
+<li><b><a class="altlink" href="/news/20110505-openrc.xml">OpenRC and baselayout 2 will be stabilized on May 8</a></b></li>
+<li><b><a class="altlink" href="/news/20110427-kde46.xml">Qt 4.7 and KDE 4.6 going stable, finally!</a></b></li>
+</ul>
+</div>
+<br><table border="0" class="content"><tr><td></td></tr></table>
+<br><br>
+</td>
+<td width="1%" bgcolor="#dddaec" valign="top"><table border="0" cellspacing="4px" cellpadding="4px">
+<tr lang="en"><td align="center" class="topsep">
+<p class="alttext"><b>Donate</b> to support our development efforts.
+        </p>
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_xclick"><input type="hidden" name="business" value="paypal@gentoo.org"><input type="hidden" name="item_name" value="Gentoo Linux Support"><input type="hidden" name="item_number" value="1000"><input type="hidden" name="image_url" value="/images/paypal.png"><input type="hidden" name="no_shipping" value="1"><input type="hidden" name="return" value="https://www.gentoo.org"><input type="hidden" name="cancel_return" value="https://www.gentoo.org"><input type="image" src="https://www.paypal.com/en_US/i/btn/x-click-but21.gif" name="submit" alt="Donate to Gentoo">
+</form>
+</td></tr>
+<tr lang="en"><td align="center"><iframe src="https://sidebar.gentoo.org" scrolling="no" width="125" height="850" frameborder="0" style="border:0px padding:0x" marginwidth="0" marginheight="0"><p>Your browser does not support iframes.</p></iframe></td></tr>
+</table></td>
+</tr>
+<tr lang="en"><td align="right" class="infohead" colspan="3">
+Copyright 2001-2013 Gentoo Foundation, Inc. Questions, Comments? <a class="highlight" href="/main/en/contact.xml">Contact us</a>.
+</td></tr>
+</table></body>
+</html>

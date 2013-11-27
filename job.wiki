@@ -1,171 +1,34 @@
-= 使用Java编写Hadoop MapReduce程序 =
+= Hadoop作业提交的一般形式 =
 
-== 示例代码<code>WordCount.java</code> ==
+<code>hadoop</code>命令的一般形式：
 
-<pre>package org.myorg;
+<pre>$ hadoop -h
+Usage: hadoop [--config confdir] COMMAND
+       where COMMAND is one of:
+  fs                   run a generic filesystem user client
+  version              print the version
+  jar &lt;jar&gt;            run a jar file
+  checknative [-a|-h]  check native hadoop and compression libraries availability
+  distcp &lt;srcurl&gt; &lt;desturl&gt; copy file or directories recursively
+  archive -archiveName NAME -p &lt;parent path&gt; &lt;src&gt;* &lt;dest&gt; create a hadoop archive
+  classpath            prints the class path needed to get the
+                       Hadoop jar and the required libraries
+  daemonlog            get/set the log level for each daemon
+ or
+  CLASSNAME            run the class named CLASSNAME
 
-import java.io.IOException;
-import java.util.*;
+Most commands print help when invoked w/o parameters.</pre>
+提交作业使用的主要子命令是<code>jar</code>，其主要附加参数如下：
 
-import org.apache.hadoop.fs.Path;
-import org.apache.hadoop.conf.*;
-import org.apache.hadoop.io.*;
-import org.apache.hadoop.mapred.*;
-import org.apache.hadoop.util.*;
-
-public class WordCount {
-
-    public static class Map extends MapReduceBase implements Mapper&lt;LongWritable, 
-Text, Text, IntWritable&gt; {
-      private final static IntWritable one = new IntWritable(1);
-      private Text word = new Text();
-
-      public void map(LongWritable key, Text value, 
-OutputCollector&lt;Text, IntWritable&gt; output, Reporter reporter) throws IOException {
-        String line = value.toString();
-        StringTokenizer tokenizer = new StringTokenizer(line);
-        while (tokenizer.hasMoreTokens()) {
-          word.set(tokenizer.nextToken());
-          output.collect(word, one);
-        }
-      }
-    }
-
-    public static class Reduce extends MapReduceBase implements Reducer&lt;Text, IntWritable, 
-Text, IntWritable&gt; {
-      public void reduce(Text key, Iterator&lt;IntWritable&gt; values, 
-      OutputCollector&lt;Text, IntWritable&gt; output, Reporter reporter) throws IOException {
-        int sum = 0;
-        while (values.hasNext()) {
-          sum += values.next().get();
-        }
-        output.collect(key, new IntWritable(sum));
-      }
-    }
-
-    public static void main(String[] args) throws Exception {
-      JobConf conf = new JobConf(WordCount.class);
-      conf.setJobName(&quot;wordcount&quot;);
-
-      conf.setOutputKeyClass(Text.class);
-      conf.setOutputValueClass(IntWritable.class);
-
-      conf.setMapperClass(Map.class);
-      conf.setCombinerClass(Reduce.class);
-      conf.setReducerClass(Reduce.class);
-
-      conf.setInputFormat(TextInputFormat.class);
-      conf.setOutputFormat(TextOutputFormat.class);
-
-      FileInputFormat.setInputPaths(conf, new Path(args[0]));
-      FileOutputFormat.setOutputPath(conf, new Path(args[1]));
-
-      JobClient.runJob(conf);
-    }
-}</pre>
-== 编译Java程序代码 ==
-
-检查环境变量<code>CLASSPATH</code>是否设置为CDH4对应的位置：
-
-<pre>$ echo $CLASSPATH
-/opt/cloudera/parcels/CDH/lib/hadoop/*:/opt/cloudera/parcels/CDH/lib/hadoop/client-0.20/*:</pre>
-编译代码：
-
-<pre>$ mkdir wordcount_classes
-$ javac -d wordcount_classes WordCount.java </pre>
-生成Jar包：
-
-<pre>$ jar -cvf wordcount.jar -C wordcount_classes/ .</pre>
-== 准备数据 ==
-
-随便抓取一些文本数据作为<code>WordCount</code>程序的输入。 输入数据需要从本地复制到HDFS中。
-
-<pre>$ mkdir input
-$ curl http://www.sjtu.edu.cn &gt; input/file01.txt
-$ curl http://net.sjtu.edu.cn &gt; input/file02.txt
-$ hdfs dfs -mkdir /user/jianwen/wordcount
-$ hdfs dfs -copyFromLocal input /user/jianwen/wordcount/input
-$ hdfs dfs -ls /user/jianwen/wordcount/input
-Found 2 items
--rw-r--r--   3 jianwen hadoop      74758 2013-11-21 14:35 /user/jianwen/wordcount/input/file01.txt
--rw-r--r--   3 jianwen hadoop      33553 2013-11-21 14:35 /user/jianwen/wordcount/input/file02.txt</pre>
-== 运行作业 ==
-
-使用<code>hadoop</code>命令提交作业，在参数中指定jar包、Java主类、输入文件夹、输出文件夹。
-
-<pre>$ hadoop jar wordcount.jar org.myorg.WordCount \
-/user/jianwen/wordcount/input /user/jianwen/wordcount/output</pre>
-运行很快就能完成，在运行过程中显示的作业信息如下：
-
-<pre>13/11/21 14:38:41 WARN mapred.JobClient: Use GenericOptionsParser for parsing the arguments. Applications should implement Tool for the same.
-13/11/21 14:38:41 INFO mapred.FileInputFormat: Total input paths to process : 2
-13/11/21 14:38:41 INFO mapred.JobClient: Running job: job_201311150128_0050
-13/11/21 14:38:42 INFO mapred.JobClient:  map 0% reduce 0%
-13/11/21 14:38:48 INFO mapred.JobClient:  map 100% reduce 0%
-13/11/21 14:38:53 INFO mapred.JobClient:  map 100% reduce 41%
-13/11/21 14:38:54 INFO mapred.JobClient:  map 100% reduce 100%
-13/11/21 14:38:55 INFO mapred.JobClient: Job complete: job_201311150128_0050
-13/11/21 14:38:55 INFO mapred.JobClient: Counters: 33
-13/11/21 14:38:55 INFO mapred.JobClient:   File System Counters
-13/11/21 14:38:55 INFO mapred.JobClient:     FILE: Number of bytes read=56585
-13/11/21 14:38:55 INFO mapred.JobClient:     FILE: Number of bytes written=25028678
-13/11/21 14:38:55 INFO mapred.JobClient:     FILE: Number of read operations=0
-13/11/21 14:38:55 INFO mapred.JobClient:     FILE: Number of large read operations=0
-13/11/21 14:38:55 INFO mapred.JobClient:     FILE: Number of write operations=0
-13/11/21 14:38:55 INFO mapred.JobClient:     HDFS: Number of bytes read=120091
-13/11/21 14:38:55 INFO mapred.JobClient:     HDFS: Number of bytes written=51565
-13/11/21 14:38:55 INFO mapred.JobClient:     HDFS: Number of read operations=150
-13/11/21 14:38:55 INFO mapred.JobClient:     HDFS: Number of large read operations=0
-13/11/21 14:38:55 INFO mapred.JobClient:     HDFS: Number of write operations=288
-13/11/21 14:38:55 INFO mapred.JobClient:   Job Counters 
-13/11/21 14:38:55 INFO mapred.JobClient:     Launched map tasks=3
-13/11/21 14:38:55 INFO mapred.JobClient:     Launched reduce tasks=144
-13/11/21 14:38:55 INFO mapred.JobClient:     Data-local map tasks=3
-13/11/21 14:38:55 INFO mapred.JobClient:     Total time spent by all maps in occupied slots (ms)=9458
-13/11/21 14:38:55 INFO mapred.JobClient:     Total time spent by all reduces in occupied slots (ms)=525978
-13/11/21 14:38:55 INFO mapred.JobClient:     Total time spent by all maps waiting after reserving slots (ms)=0
-13/11/21 14:38:55 INFO mapred.JobClient:     Total time spent by all reduces waiting after reserving slots (ms)=0
-13/11/21 14:38:55 INFO mapred.JobClient:   Map-Reduce Framework
-13/11/21 14:38:55 INFO mapred.JobClient:     Map input records=1468
-13/11/21 14:38:55 INFO mapred.JobClient:     Map output records=5378
-13/11/21 14:38:55 INFO mapred.JobClient:     Map output bytes=121396
-13/11/21 14:38:55 INFO mapred.JobClient:     Input split bytes=399
-13/11/21 14:38:55 INFO mapred.JobClient:     Combine input records=5378
-13/11/21 14:38:55 INFO mapred.JobClient:     Combine output records=1891
-13/11/21 14:38:55 INFO mapred.JobClient:     Reduce input groups=1587
-13/11/21 14:38:55 INFO mapred.JobClient:     Reduce shuffle bytes=69083
-13/11/21 14:38:55 INFO mapred.JobClient:     Reduce input records=1891
-13/11/21 14:38:55 INFO mapred.JobClient:     Reduce output records=1587
-13/11/21 14:38:55 INFO mapred.JobClient:     Spilled Records=3782
-13/11/21 14:38:55 INFO mapred.JobClient:     CPU time spent (ms)=196290
-13/11/21 14:38:55 INFO mapred.JobClient:     Physical memory (bytes) snapshot=42758049792
-13/11/21 14:38:55 INFO mapred.JobClient:     Virtual memory (bytes) snapshot=238107385856
-13/11/21 14:38:55 INFO mapred.JobClient:     Total committed heap usage (bytes)=146269863936
-13/11/21 14:38:55 INFO mapred.JobClient:   org.apache.hadoop.mapreduce.lib.input.FileInputFormatCounter
-13/11/21 14:38:55 INFO mapred.JobClient:     BYTES_READ=108311</pre>
-可以在HDFS上直接查看运行结果，当然还也可以把结果复制到本地。
-
-<pre>$ hdfs dfs -ls /user/jianwen/wordcount/output
-Found 146 items
--rw-r--r--   3 jianwen hadoop          0 2013-11-21 14:38 /user/jianwen/wordcount/output/_SUCCESS
-drwxr-xr-x   - jianwen hadoop          0 2013-11-21 14:38 /user/jianwen/wordcount/output/_logs
--rw-r--r--   3 jianwen hadoop        505 2013-11-21 14:38 /user/jianwen/wordcount/output/part-00000
--rw-r--r--   3 jianwen hadoop        236 2013-11-21 14:38 /user/jianwen/wordcount/output/part-00001
--rw-r--r--   3 jianwen hadoop        255 2013-11-21 14:38 /user/jianwen/wordcount/output/part-00002
-...
-
-$ hdfs dfs -cat /user/jianwen/wordcount/output/part-00001
-
-$ hdfs dfs -copyToLocal hdfs dfs -cat /user/jianwen/wordcount/output ./wordcount-output</pre>
-= 使用Python编写Hadoop MapReduce程序 =
-
-= 使用C++编写Hadoop MapRedducech程序 =
+* <code>-files</code>
+* <code>-libjars</code>
+* <code>-archives</code>
 
 = TODO =
 
+* 改进关于<code>hadoop</code>命令的说明，增加MapReduce作业运行过程的说明。
 * 在命令行，而不是代码中指定这些参数：作业名、并行Mapper/Reducer数量；
-* Java Makefile http://geosoft.no/development/javamake.html
 
 = 参考资料 =
 
-''Cloudera Hadoop Tutorial'' http://www.cloudera.com/content/cloudera-content/cloudera-docs/HadoopTutorial/CDH4/Hadoop-Tutorial.html
+* Apache Hadoop Commands Guide http://hadoop.apache.org/docs/r1.2.1/commands_manual.html

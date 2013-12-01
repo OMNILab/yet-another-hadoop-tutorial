@@ -346,7 +346,7 @@ Reduce函数文件```reducer.py```
 
 使用Hadoop Streaming运行：
 
-	$ hadoop jar hadoop-*streaming*.jar \
+	$ hadoop jar /opt/cloudera/parcels/CDH/lib/hadoop-0.20-mapreduce/contrib/streaming/hadoop-streaming-2.0.0-mr1-cdh4.5.0.jar \
 	-file py/mapper.py    -mapper py/mapper.py \
 	-file py/reducer.py   -reducer py/reducer.py \
 	-input pywordcount/input -output pywordcount/output

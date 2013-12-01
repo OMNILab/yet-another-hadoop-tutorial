@@ -1,0 +1,5 @@
+% Aapche Pig数据流处理
+% 上海交通大学OmniLab\
+<http://omnilab.sjtu.edu.cn>
+% 2013年12月1日 更新
+

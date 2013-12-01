@@ -181,7 +181,27 @@ Hadoop MapReduce运行的一般过程
 程序模块说明
 ------
 
-优化建议
+使用Java开发Hadoop应用程序，使用的主要接口(Interface)如下，它们是Hadoop MapReduce的基本构建模块(Building blocks)。
+在开发过程中，用户可以自己编写类实现这些接口，也可以使用Hadoop框架预先实现的类。
+
+<!--
+* ```Input and Output```: 控制MapReduce输入、输出中间数据的格式，即键值对的格式；
+-->
+
+* ```InputFormat```, ```OutputFormat```: 控制MapReduce输入、输出中间数据的格式，即键值对的格式；
+* ```Mapper```: 实现Map函数的逻辑；
+* ```Reducer```: 实现Reduce函数的逻辑；
+* Partitioner
+* Reporter
+* OutputCollector
+
+除此以外，Hadoop还包含一个辅助工具包```lib```，提供作业管理、数据分割、数据合并等辅助功能。
+
+### InputFormat and OutputFormat
+
+实现了```Input```和```Output```
+
+初步优化建议
 ------
 
 使用Python编写Hadoop MapReduce程序
@@ -194,9 +214,11 @@ TODO
 ======
 * 在命令行，而不是代码中指定这些参数：作业名、并行Mapper/Reducer数量；
 * Java Makefile <http://geosoft.no/development/javamake.html>
+* 0.2以后的MapReduce框架中，Input和Output被什么模块取代了？
 
 参考资料
 ======
 
-*Cloudera Hadoop Tutorial* <http://www.cloudera.com/content/cloudera-content/cloudera-docs/HadoopTutorial/CDH4/Hadoop-Tutorial.html>
+* Cloudera Hadoop Tutorial <http://www.cloudera.com/content/cloudera-content/cloudera-docs/HadoopTutorial/CDH4/Hadoop-Tutorial.html>
 * Apache Hadoop Commands Guide <http://hadoop.apache.org/docs/r1.2.1/commands_manual.html>
+* Java Doc: Package ```org.apache.hadoop.mapred.lib``` <http://hadoop.apache.org/docs/current/api/org/apache/hadoop/mapred/lib/package-summary.html>

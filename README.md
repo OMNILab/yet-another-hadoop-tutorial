@@ -40,9 +40,9 @@ Hadoop也具有作业管理系统的核心功能，如接收作业、分配作�
 1. [Hadoop文件系统操作](hdfs.pdf)；
 2. [Hadoop程序编写](mapreduce.pdf)；
 3. [Hadoop作业管理](job.pdf)；
-4. Apache Pig数据流处理；
-5. Apache Hive数据仓库；
-6. Hadoop作业优化；
+4. [Apache Pig数据流处理](pig.pdf)；
+5. [Apache Hive数据仓库](hive.pdf)；
+6. [Hadoop作业优化](optimize.pdf)；
 
 主要参考资料
 ======

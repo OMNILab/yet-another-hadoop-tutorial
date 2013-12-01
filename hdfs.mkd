@@ -143,6 +143,10 @@ HDFS的管理在其他文档介绍。
 	alias hdu='hdfs dfs -du'
 	alias hdf='hdfs dfs -df'
 
+TOOD
+=====
+* 重写HDFS命令介绍一部分，两个Hadoop版本的定义出现了冲突，还是应该以```hadoop fs```为基准。
+
 参考资料
 ======
 

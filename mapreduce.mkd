@@ -100,9 +100,9 @@ Hadoop MapReduce运行的一般过程
 	$ mkdir input
 	$ curl http://www.sjtu.edu.cn > input/file01.txt
 	$ curl http://net.sjtu.edu.cn > input/file02.txt
-	$ hdfs dfs -mkdir /user/jianwen/wordcount
-	$ hdfs dfs -copyFromLocal input /user/jianwen/wordcount/input
-	$ hdfs dfs -ls /user/jianwen/wordcount/input
+	$ hadoop fs -mkdir /user/jianwen/wordcount
+	$ hadoop fs -copyFromLocal input /user/jianwen/wordcount/input
+	$ hadoop fs -ls /user/jianwen/wordcount/input
 	Found 2 items
 	-rw-r--r--   3 jianwen hadoop      74758 2013-11-21 14:35 /user/jianwen/wordcount/input/file01.txt
 	-rw-r--r--   3 jianwen hadoop      33553 2013-11-21 14:35 /user/jianwen/wordcount/input/file02.txt
@@ -165,7 +165,7 @@ Hadoop MapReduce运行的一般过程
 
 可以在HDFS上直接查看运行结果，当然还也可以把结果复制到本地。 
 	
-	$ hdfs dfs -ls /user/jianwen/wordcount/output
+	$ hadoop fs -ls /user/jianwen/wordcount/output
 	Found 146 items
 	-rw-r--r--   3 jianwen hadoop          0 2013-11-21 14:38 /user/jianwen/wordcount/output/_SUCCESS
 	drwxr-xr-x   - jianwen hadoop          0 2013-11-21 14:38 /user/jianwen/wordcount/output/_logs
@@ -174,9 +174,9 @@ Hadoop MapReduce运行的一般过程
 	-rw-r--r--   3 jianwen hadoop        255 2013-11-21 14:38 /user/jianwen/wordcount/output/part-00002
 	...
 	
-	$ hdfs dfs -cat /user/jianwen/wordcount/output/part-00001
+	$ hadoop fs -cat /user/jianwen/wordcount/output/part-00001
 	
-	$ hdfs dfs -copyToLocal hdfs dfs -cat /user/jianwen/wordcount/output ./wordcount-output
+	$ hadoop fs -copyToLocal hadoop fs -cat /user/jianwen/wordcount/output ./wordcount-output
 
 程序模块说明
 ------
@@ -197,6 +197,13 @@ Hadoop MapReduce运行的一般过程
 
 除此以外，Hadoop还包含一个辅助工具包```lib```，提供作业管理、数据分割、数据合并等辅助功能。
 
+以WordCount程序为例，运行```hadoop jar```载入```org.myorg.WordCount```类后，程序执行流程如下：
+
+1. 从```Wordcount.main()```函数开始执行；
+	1. 在```JobConf```类对象实例中```conf```设定作业参数，包括：
+	作业名、
+	2. 
+
 ### InputFormat and OutputFormat
 
 实现了```Input```和```Output```
@@ -215,6 +222,7 @@ TODO
 * 在命令行，而不是代码中指定这些参数：作业名、并行Mapper/Reducer数量；
 * Java Makefile <http://geosoft.no/development/javamake.html>
 * 0.20引入了以```Context Objects```的新API，这部分应该如何介绍和使用？目前新与“旧”两套API都有比较广泛的使用。
+* 适当修改HDFS操作命令。
 
 参考资料
 ======
@@ -225,4 +233,5 @@ TODO
 * Hadoop Wiki: WordCount Example in Hadoop New APIs <http://wiki.apache.org/hadoop/WordCount> 
 * StackOverflow: Is it better to use the mapred or the mapreduce package to create a Hadoop Job? <http://stackoverflow.com/questions/7598422/is-it-better-to-use-the-mapred-or-the-mapreduce-package-to-create-a-hadoop-job>
 * "Upgrading to the new MapReduce APIs" by TOm Hughes-Croucher <http://www.slideshare.net/sh1mmer/upgrading-to-the-new-map-reduce-api>
-
+* "Anatomy of a MapReduce Job Run with Hadoop" by Tomwhite <http://answers.oreilly.com/topic/459-anatomy-of-a-mapreduce-job-run-with-hadoop/> 
+* "Hadoop MapReduce任务执行流程源代码详细解析" <http://blog.csdn.net/riverm/article/details/6826200>

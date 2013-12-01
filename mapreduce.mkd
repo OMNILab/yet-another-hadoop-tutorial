@@ -27,53 +27,51 @@ Hadoop MapReduce运行的一般过程
 	
 	public class WordCount {
 	
-	    public static class Map extends MapReduceBase implements Mapper<LongWritable, 
-	Text, Text, IntWritable> {
-	      private final static IntWritable one = new IntWritable(1);
-	      private Text word = new Text();
+	  public static class Map extends MapReduceBase implements Mapper<LongWritable, Text, Text, IntWritable> {
+	    private final static IntWritable one = new IntWritable(1);
+	    private Text word = new Text();
 	
-	      public void map(LongWritable key, Text value, 
-	OutputCollector<Text, IntWritable> output, Reporter reporter) throws IOException {
-	        String line = value.toString();
-	        StringTokenizer tokenizer = new StringTokenizer(line);
-	        while (tokenizer.hasMoreTokens()) {
-	          word.set(tokenizer.nextToken());
-	          output.collect(word, one);
-	        }
+	    public void map(LongWritable key, Text value, OutputCollector<Text, IntWritable> output, Reporter reporter) throws IOException {
+	      String line = value.toString();
+	      StringTokenizer tokenizer = new StringTokenizer(line);
+	      while (tokenizer.hasMoreTokens()) {
+	        word.set(tokenizer.nextToken());
+	        output.collect(word, one);
 	      }
 	    }
+	  }
 	
-	    public static class Reduce extends MapReduceBase implements Reducer<Text, IntWritable, 
-	Text, IntWritable> {
-	      public void reduce(Text key, Iterator<IntWritable> values, 
-	      OutputCollector<Text, IntWritable> output, Reporter reporter) throws IOException {
-	        int sum = 0;
-	        while (values.hasNext()) {
-	          sum += values.next().get();
-	        }
-	        output.collect(key, new IntWritable(sum));
+	  public static class Reduce extends MapReduceBase implements Reducer<Text, IntWritable, Text, IntWritable> {
+	    public void reduce(Text key, Iterator<IntWritable> values, OutputCollector<Text, IntWritable> output, Reporter reporter) throws IOException {
+	      int sum = 0;
+	      while (values.hasNext()) {
+	        sum += values.next().get();
 	      }
+	      output.collect(key, new IntWritable(sum));
 	    }
+	  }
 	
-	    public static void main(String[] args) throws Exception {
-	      JobConf conf = new JobConf(WordCount.class);
-	      conf.setJobName("wordcount");
+	  public static void main(String[] args) throws Exception {
+	    JobConf conf = new JobConf(WordCount.class);
+	    conf.setJobName("wordcount");
 	
-	      conf.setOutputKeyClass(Text.class);
-	      conf.setOutputValueClass(IntWritable.class);
+	    conf.setInputFormat(TextInputFormat.class);
+	    conf.setOutputFormat(TextOutputFormat.class);
 	
-	      conf.setMapperClass(Map.class);
-	      conf.setCombinerClass(Reduce.class);
-	      conf.setReducerClass(Reduce.class);
+	    conf.setMapOutputKeyClass(Text.class);
+	    conf.setMapOutputValueClass(IntWritable.class);
+	    conf.setOutputKeyClass(Text.class);
+	    conf.setOutputValueClass(IntWritable.class);
 	
-	      conf.setInputFormat(TextInputFormat.class);
-	      conf.setOutputFormat(TextOutputFormat.class);
+	    conf.setMapperClass(Map.class);
+	    conf.setCombinerClass(Reduce.class);
+	    conf.setReducerClass(Reduce.class);
 	
-	      FileInputFormat.setInputPaths(conf, new Path(args[0]));
-	      FileOutputFormat.setOutputPath(conf, new Path(args[1]));
+	    FileInputFormat.setInputPaths(conf, new Path(args[0]));
+	    FileOutputFormat.setOutputPath(conf, new Path(args[1]));
 	
-	      JobClient.runJob(conf);
-	    }
+	    JobClient.runJob(conf);
+	  }
 	}
 
 ### 编译Java程序代码
@@ -101,8 +99,8 @@ Hadoop MapReduce运行的一般过程
 	$ curl http://www.sjtu.edu.cn > input/file01.txt
 	$ curl http://net.sjtu.edu.cn > input/file02.txt
 	$ hadoop fs -mkdir /user/jianwen/wordcount
-	$ hadoop fs -copyFromLocal input /user/jianwen/wordcount/input
-	$ hadoop fs -ls /user/jianwen/wordcount/input
+	$ hadoop fs -copyFromLocal input wordcount/input
+	$ hadoop fs -ls wordcount/input
 	Found 2 items
 	-rw-r--r--   3 jianwen hadoop      74758 2013-11-21 14:35 /user/jianwen/wordcount/input/file01.txt
 	-rw-r--r--   3 jianwen hadoop      33553 2013-11-21 14:35 /user/jianwen/wordcount/input/file02.txt
@@ -111,8 +109,7 @@ Hadoop MapReduce运行的一般过程
 
 使用```hadoop```命令提交作业，在参数中指定jar包、Java主类、输入文件夹、输出文件夹。
 
-	$ hadoop jar wordcount.jar org.myorg.WordCount \
-	/user/jianwen/wordcount/input /user/jianwen/wordcount/output
+	$ hadoop jar wordcount.jar org.myorg.WordCount wordcount/input wordcount/output
 	
 运行很快就能完成，在运行过程中显示的作业信息如下：
 
@@ -174,55 +171,197 @@ Hadoop MapReduce运行的一般过程
 	-rw-r--r--   3 jianwen hadoop        255 2013-11-21 14:38 /user/jianwen/wordcount/output/part-00002
 	...
 	
-	$ hadoop fs -cat /user/jianwen/wordcount/output/part-00001
+	$ hadoop fs -cat wordcount/output/part-00001
 	
-	$ hadoop fs -copyToLocal hadoop fs -cat /user/jianwen/wordcount/output ./wordcount-output
+	$ hadoop fs -copyToLocal hadoop fs -cat wordcount/output ./wordcount-output
 
 程序模块说明
 ------
 
-使用Java开发Hadoop应用程序，使用的主要接口(Interface)如下，它们是Hadoop MapReduce的基本构建模块(Building blocks)。
-在开发过程中，用户可以自己编写类实现这些接口，也可以使用Hadoop框架预先实现的类。
-
-<!--
-* ```Input and Output```: 控制MapReduce输入、输出中间数据的格式，即键值对的格式；
--->
-
-* ```InputFormat```, ```OutputFormat```: 控制MapReduce输入、输出中间数据的格式，即键值对的格式；
-* ```Mapper```: 实现Map函数的逻辑；
-* ```Reducer```: 实现Reduce函数的逻辑；
-* Partitioner
-* Reporter
-* OutputCollector
-
-除此以外，Hadoop还包含一个辅助工具包```lib```，提供作业管理、数据分割、数据合并等辅助功能。
-
 以WordCount程序为例，运行```hadoop jar```载入```org.myorg.WordCount```类后，程序执行流程如下：
 
-1. 从```Wordcount.main()```函数开始执行；
-	1. 在```JobConf```类对象实例中```conf```设定作业参数，包括：
-	作业名、
-	2. 
+1. 从```Wordcount.main()```函数开始执行，在```JobConf```类对象实例```conf```中设置作业参数；
+2. 使用```runJob```启动作业；
+3. 作业在MapReduce框架中运行，用户最终在先前指定的输出文件路径中看到运行结果。
 
-### InputFormat and OutputFormat
+### 作业参数
 
-实现了```Input```和```Output```
+WordCount示例程序中设置的作业参数包括：
 
-MapReduce New API示例代码
+* 设置作业名```setJobName```；
+* 设置输入文件格式```setInputFormat```，以及输出文件的格式```setOutputFormat```；
+* 设置Map函数的输出键值对的类型(```setMapOutputKeyClass```, ```setMapOutputValueClass```) ，以及Reduce函数输出的键值对类型(```setOutputKeyClass```, ```setOutputValueClass```)；
+* 设置本次作业使用的Map函数(```setMapperClass```)，Combiner函数(```setCombinerClass```)，Reduce函数(setReducerClass))；
+* 设置本次作业的输入文件路径(```setInputPaths```)，以及输出文件路径(```setOutputPath```)。在示例程序中，这两个参数是在启动程序的命令行参数中指定的。
+
+Hadoop MapReduce可以从多种数据文件读入数据，也可以将计算结果保存到多种数据文件中，如纯文本文件(text files)、键值对序列文件(sequence files)、数据库文件(DB files)等，用户还可以根据自己的需求进行扩展，实现额外的输入/输出文件类型。
+
+特别值得注意的是输入文件类型的选择。
+Hadoop支持的输入文件类型必须实现```InputFormat<K, V>```接口，文档说明了文件类型必须实现的几个功能：
+
+1. 验证作业输入参数的有效性；
+2. 将输入文件分成逻辑片(logical InputSplits)，每个逻辑片指定给一个Mapper处理。分片功能被封装在```getSplits()```函数中；
+3. 实现或调用合适的记录阅读器(```RecordReader```)，将逻辑分片正确无误地解析为一条条记录，供Mapper使用。 
+
+WordCount示例程序中，使用的输入文件类型是```TextInputFormat```。
+```TextInputFormat```实现了```InputFormat<LongWritable, Text>```接口，
+并且实现了适合于处理文本输入文件的记录阅读器```LineRecordReader```。
+```TextInputFormat```将文件做逻辑分片后，将逻辑分片按行解析，输出的记录类型为```<IntWritable, Text>```，其中Key为该行结束位置在文件中的偏移量，Value是该行的文本内容。
+Map函数从输入文件获得输入数据，因此接收的键值对类型应该与之保持一致。
+
+另一块需要注意的是Map函数和Reduce函数的输出键值对数据类型。
+首先，在作业参数中指定的输出类型，应该与函数声明的类型一致；
+其次，Map函数的输出要作为Reduce函数的输入，Reduce函数的输出也要可以作为Reduce函数的输入，因此作业环境的Map输出类型、作业环境中的Reduce输出类型、Reduce函数声明的输出类型这三者应该是相容的。
+为简便起见，```setOutputKeyClass```和```setOutputValueClass```同时指定了Map和Reduce的Key/Value类型，```setMapOutputKeyClass```和```setMapOutputValueClass```仅用在极少数需要额外定制的场合。
+
+### Mapper Reducer
+
+在WordCount作业中，我们使用的Map类是```org.myorg.WordCount.Map```，
+类型签名如下。
+
+	public static class Map 
+	extends MapReduceBase 
+	implements Mapper<LongWritable, Text, Text, IntWritable>
+
+```map```函数在函数体中实现了，其函数签名如下：
+
+	void map(LongWritable key, Text value, 
+	OutputCollector<Text, IntWritable> output, 
+	Reporter reporter) 
+	throws IOException
+
+可见，```Map```函数实现了```Mapper```接口，继承了```MapReduceBase```抽象基类。
+
+其中，接口```Mapper```的如下
+
+	Interface Mapper<K1,V1,K2,V2>
+
+其主要功能是约定Map函数的输入键值对类型```<K1,V1>```和输出键值对类型```<K2,V2>```，
+并约定接口函数```map()```原型：
+
+	public void map(K1 key, V1 value, OutputCollector<K2,V2> output, Reporter reporter) 
+
+```MapReduceBase```则提供了与作业控制相关的函数接口，不再详述。
+
+类似地，可以分析```org.myorg.WordCount.Reduce```函数的签名：
+
+	public static class Reduce 
+	extends MapReduceBase 
+	implements Reducer<Text, IntWritable, Text, IntWritable>
+
+```reduce```函数的签名：
+
+	public void reduce(Text key, Iterator<IntWritable> values, 
+	OutputCollector<Text, IntWritable> output, 
+	Reporter reporter) 
+	throws IOException
+
+被实现的```Reducer```接口，签名如下，同样对Reduce的输入、输出键值对类型做了约定。
+	
+	Interface Reducer<K2,V2,K3,V3>
+
+最后，```map```和```reduce```函数生成的键值对结果，都需要通过```OutputCollector```实例收集。
+
+<!--
+MapReduce New APIs
 ------
+-->
 
 使用Python编写Hadoop MapReduce程序
 ======
 
+Map函数文件```mapper.py```
+------
+
+	#!/usr/bin/env python
+	
+	import sys
+	
+	# input comes from STDIN (standard input)
+	for line in sys.stdin:
+	    # remove leading and trailing whitespace
+	    line = line.strip()
+	    # split the line into words
+	    words = line.split()
+	    # increase counters
+	    for word in words:
+	        # write the results to STDOUT (standard output);
+	        # what we output here will be the input for the
+	        # Reduce step, i.e. the input for reducer.py
+	        #
+	        # tab-delimited; the trivial word count is 1
+	        print '%s\t%s' % (word, 1)
+
+Reduce函数文件```reducer.py```
+------
+
+	#!/usr/bin/env python
+	
+	from operator import itemgetter
+	import sys
+	
+	current_word = None
+	current_count = 0
+	word = None
+	
+	# input comes from STDIN
+	for line in sys.stdin:
+	    # remove leading and trailing whitespace
+	    line = line.strip()
+	
+	    # parse the input we got from mapper.py
+	    word, count = line.split('\t', 1)
+	
+	    # convert count (currently a string) to int
+	    try:
+	        count = int(count)
+	    except ValueError:
+	        # count was not a number, so silently
+	        # ignore/discard this line
+	        continue
+	
+	    # this IF-switch only works because Hadoop sorts map output
+	    # by key (here: word) before it is passed to the reducer
+	    if current_word == word:
+	        current_count += count
+	    else:
+	        if current_word:
+	            # write result to STDOUT
+	            print '%s\t%s' % (current_word, current_count)
+	        current_count = count
+	        current_word = word
+	
+	# do not forget to output the last word if needed!
+	if current_word == word:
+	    print '%s\t%s' % (current_word, current_count)
+
+在Hadoop上运行
+------
+
+准备数据：
+
+	$ cd src/pyWordCount
+	$ hadoop fs -mkdir pywordcount
+	$ hadoop fs -copyFromLocal input pywordcount/
+
+使用Hadoop Streaming运行：
+
+	$ hadoop jar hadoop-*streaming*.jar \
+	-file py/mapper.py    -mapper py/mapper.py \
+	-file py/reducer.py   -reducer py/reducer.py \
+	-input pywordcount/input -output pywordcount/output
+
+<!--
 使用C++编写Hadoop MapRedducech程序
 ======
+-->
 
 TODO
 ======
 * 在命令行，而不是代码中指定这些参数：作业名、并行Mapper/Reducer数量；
 * Java Makefile <http://geosoft.no/development/javamake.html>
 * 0.20引入了以```Context Objects```的新API，这部分应该如何介绍和使用？目前新与“旧”两套API都有比较广泛的使用。
-* 适当修改HDFS操作命令。
+* Tasks任务数与Splits文件分片数，如何有效定制这两个参数？
 
 参考资料
 ======
@@ -233,5 +372,8 @@ TODO
 * Hadoop Wiki: WordCount Example in Hadoop New APIs <http://wiki.apache.org/hadoop/WordCount> 
 * StackOverflow: Is it better to use the mapred or the mapreduce package to create a Hadoop Job? <http://stackoverflow.com/questions/7598422/is-it-better-to-use-the-mapred-or-the-mapreduce-package-to-create-a-hadoop-job>
 * "Upgrading to the new MapReduce APIs" by TOm Hughes-Croucher <http://www.slideshare.net/sh1mmer/upgrading-to-the-new-map-reduce-api>
-* "Anatomy of a MapReduce Job Run with Hadoop" by Tomwhite <http://answers.oreilly.com/topic/459-anatomy-of-a-mapreduce-job-run-with-hadoop/> 
-* "Hadoop MapReduce任务执行流程源代码详细解析" <http://blog.csdn.net/riverm/article/details/6826200>
+* "Anatomy of a MapReduce Job Run with Hadoop" by Tomwhite, from Chapter 6 of "The Definitive Guide of Hadoop": How Hadoop works <http://answers.oreilly.com/topic/459-anatomy-of-a-mapreduce-job-run-with-hadoop/> 
+* "HADOOP: RECORDREADER AND FILEINPUTFORMAT" <http://hadoopi.wordpress.com/2013/05/27/understand-recordreader-inputsplit/>
+* Source Code:```org.apache.hadoop.mapred.TextInputFormat``` <http://grepcode.com/file/repo1.maven.org/maven2/org.jvnet.hudson.hadoop/hadoop-core/0.19.1-hudson-2/org/apache/hadoop/mapred/TextInputFormat.java>
+* "Writing an Hadoop MapReduce Program in Python" by Michael G. Noll <http://www.michael-noll.com/tutorials/writing-an-hadoop-mapreduce-program-in-python/>
+

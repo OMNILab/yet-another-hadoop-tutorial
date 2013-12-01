@@ -201,7 +201,7 @@ Hadoop MapReduce运行的一般过程
 
 实现了```Input```和```Output```
 
-初步优化建议
+MapReduce New API示例代码
 ------
 
 使用Python编写Hadoop MapReduce程序
@@ -214,7 +214,7 @@ TODO
 ======
 * 在命令行，而不是代码中指定这些参数：作业名、并行Mapper/Reducer数量；
 * Java Makefile <http://geosoft.no/development/javamake.html>
-* 0.2以后的MapReduce框架中，Input和Output被什么模块取代了？
+* 0.20引入了以```Context Objects```的新API，这部分应该如何介绍和使用？目前新与“旧”两套API都有比较广泛的使用。
 
 参考资料
 ======
@@ -222,3 +222,7 @@ TODO
 * Cloudera Hadoop Tutorial <http://www.cloudera.com/content/cloudera-content/cloudera-docs/HadoopTutorial/CDH4/Hadoop-Tutorial.html>
 * Apache Hadoop Commands Guide <http://hadoop.apache.org/docs/r1.2.1/commands_manual.html>
 * Java Doc: Package ```org.apache.hadoop.mapred.lib``` <http://hadoop.apache.org/docs/current/api/org/apache/hadoop/mapred/lib/package-summary.html>
+* Hadoop Wiki: WordCount Example in Hadoop New APIs <http://wiki.apache.org/hadoop/WordCount> 
+* StackOverflow: Is it better to use the mapred or the mapreduce package to create a Hadoop Job? <http://stackoverflow.com/questions/7598422/is-it-better-to-use-the-mapred-or-the-mapreduce-package-to-create-a-hadoop-job>
+* "Upgrading to the new MapReduce APIs" by TOm Hughes-Croucher <http://www.slideshare.net/sh1mmer/upgrading-to-the-new-map-reduce-api>
+

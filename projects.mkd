@@ -1,0 +1,13 @@
+% Hadoop练习
+% 上海交通大学OmniLab\
+<http://omnilab.sjtu.edu.cn>
+% 2013年12月2日 更新
+
+Process Music
+======
+
+"How to process a million songs in 20 minutes"
+<http://musicmachinery.com/2011/09/04/how-to-process-a-million-songs-in-20-minutes/>
+
+Million Song Dataset <http://labrosa.ee.columbia.edu/millionsong/>
+
